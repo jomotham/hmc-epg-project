@@ -1,0 +1,11 @@
+joblib # TODO: not needed any more?
+matplotlib # for ml code
+numpy
+optuna # for ml code
+pandas
+positional-encodings
+pyqt6
+pyqt6-charts
+scikit-learn # for ml code
+scipy # TODO: not needed any more?
+torch # for ml code, see https://pytorch.org/get-started/locally/ (setup depends on GPU type)

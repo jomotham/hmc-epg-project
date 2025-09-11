@@ -1,0 +1,36 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.vscode/
+*.vscode/
+
+# Exploration code
+Exploration/
+
+# Bulk data
+cs/data/**/sharpshooter_raw/
+cs/data/**/sharpshooter_labeled/
+cs/data/**/sharpshooter_unlabeled/
+cs/data/**/sharpshooter_parquet/
+cs/data/**/windaq_files/
+
+cs/GUI/backups
+
+# CS ML Outputs
+cs/ML/**/rf_pickle
+cs/ML/**/tcn_weights
+cs/ML/**/*.pkl
+cs/ML/**/*.png
