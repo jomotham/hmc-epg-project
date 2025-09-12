@@ -17,6 +17,9 @@ venv.bak/
 .vscode/
 *.vscode/
 
+# UV config
+uv.lock
+
 # Exploration code
 Exploration/
 
