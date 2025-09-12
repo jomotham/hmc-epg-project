@@ -37,3 +37,5 @@ cs/ML/**/rf_pickle
 cs/ML/**/tcn_weights
 cs/ML/**/*.pkl
 cs/ML/**/*.png
+
+*.wav
