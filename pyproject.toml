@@ -21,10 +21,36 @@ dependencies = [
     "torchaudio",
     "torchvision",
     "tqdm>=4.67.1",
-    "winrt-windows-devices-radios>=3.2.1",
+
+    "winrt-windows-devices-radios>=3.2.1 ; sys_platform == 'win32'",
+
+    # ---- Default CPU PyTorch ----
+    # Windows CPU
+    "torch==2.8.0 ; sys_platform == 'win32' and extra != 'cuda129'",
+    "torchvision==0.23.0 ; sys_platform == 'win32' and extra != 'cuda129'",
+    "torchaudio==2.8.0 ; sys_platform == 'win32' and extra != 'cuda129'",
+
+    # Linux CPU (any arch)
+    "torch==2.8.0 ; sys_platform == 'linux' and extra != 'cuda129'",
+    "torchvision==0.23.0 ; sys_platform == 'linux' and extra != 'cuda129'",
+    "torchaudio==2.8.0 ; sys_platform == 'linux' and extra != 'cuda129'",
+
+    # macOS CPU (Apple Silicon & Intel)
+    "torch==2.8.0 ; sys_platform == 'darwin' and extra != 'cuda129'",
+    "torchvision==0.23.0 ; sys_platform == 'darwin' and extra != 'cuda129'",
+    "torchaudio==2.8.0 ; sys_platform == 'darwin' and extra != 'cuda129'",
 ]
 
-[tool.uv.sources]
-torch = { url = "https://download.pytorch.org/whl/cu129/torch-2.8.0%2Bcu129-cp313-cp313-win_amd64.whl" }
-torchaudio = { url = "https://download.pytorch.org/whl/cu129/torchaudio-2.8.0%2Bcu129-cp313-cp313-win_amd64.whl" }
-torchvision = { url = "https://download.pytorch.org/whl/cu129/torchvision-0.23.0%2Bcu129-cp313-cp313-win_amd64.whl" }
+[project.optional-dependencies]
+# Opt-in CUDA 12.9 wheels
+cuda129 = [
+    # Windows CUDA 12.9
+    "torch @ https://download.pytorch.org/whl/cu129/torch-2.8.0%2Bcu129-cp313-cp313-win_amd64.whl ; sys_platform == 'win32' and extra == 'cuda129'",
+    "torchvision @ https://download.pytorch.org/whl/cu129/torchvision-0.23.0%2Bcu129-cp313-cp313-win_amd64.whl ; sys_platform == 'win32' and extra == 'cuda129'",
+    "torchaudio @ https://download.pytorch.org/whl/cu129/torchaudio-2.8.0%2Bcu129-cp313-cp313-win_amd64.whl ; sys_platform == 'win32' and extra == 'cuda129'",
+
+    # Linux x86_64 CUDA 12.9
+    "torch @ https://download.pytorch.org/whl/cu129/torch-2.8.0%2Bcu129-cp313-cp313-manylinux_2_28_x86_64.whl ; sys_platform == 'linux' and platform_machine == 'x86_64' and extra == 'cuda129'",
+    "torchvision @ https://download.pytorch.org/whl/cu129/torchvision-0.23.0%2Bcu129-cp313-cp313-manylinux_2_28_x86_64.whl ; sys_platform == 'linux' and platform_machine == 'x86_64' and extra == 'cuda129'",
+    "torchaudio @ https://download.pytorch.org/whl/cu129/torchaudio-2.8.0%2Bcu129-cp313-cp313-manylinux_2_28_x86_64.whl ; sys_platform == 'linux' and platform_machine == 'x86_64' and extra == 'cuda129'",
+]
