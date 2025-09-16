@@ -1,0 +1,33 @@
+From Summer Team:
+
+To-do list for sharpshooter ML:
+    - Optuna the UNet probe splitter, minimize overfitting
+
+    - Full optuna on the probing UNet (only partial study has been done)
+        - try to get access to a good GPU for this, some folds were taking quite long to train (1.4hrs on RTX 4080,
+          0.5hrs on RTX 5090). maybe the Firebird Computing Cluster at Swarthmore?
+
+    - Rework Optuna to save outputs to a SQLite database rather than the log txt file (it has built 
+      in functionality for this) to not do trials with hyperparameters that have already been tested 
+      before. This should allow Optuna studies to be started/stopped without losing progress beyond the
+      current trial
+
+    - Look at attention for the probing UNet bottleneck (maybe for probe splitter too if it makes it better)
+
+    - Postprocessing - we implemented a simple rolling average to reduce barcoding, but the previous clinic team
+      did more advanced postprocessing in their code. See if any of that can be adapted.
+        - We also began to explore minimum np length for postprocessing 
+
+    - Current models do not take into account the settings of the EPG board at each data point. Once this is incorporated
+      into the new recording data, models might be able to take advantage of this.
+
+    
+
+
+OTHER NOTES:
+    - data_quality_map.json is a map containing the qualities of each of the valid data files, found through manual inspection. 
+      3 is best, and has lots of densely labeled regions. 0 is worst, and has no probing regions. All files are (probably) still 
+      useful for training but we don't want to accidentally train/test on a set of data that is mostly 0/1 quality. 
+      There are notes about individual files in the google drive (Data/Sort Data document)
+
+    - label_map.json maps the labels to 0 (non-probing label) or 1 (probing label)

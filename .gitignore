@@ -1,3 +1,5 @@
+#============== SOFTWARE IGNORES ============== 
+
 # Python-generated files
 __pycache__/
 *.py[oc]
@@ -21,21 +23,35 @@ venv.bak/
 uv.lock
 
 # Exploration code
-Exploration/
+software/cs/exploration/
+software/cs/gui/models/exploration
 
 # Bulk data
-cs/data/**/sharpshooter_raw/
-cs/data/**/sharpshooter_labeled/
-cs/data/**/sharpshooter_unlabeled/
-cs/data/**/sharpshooter_parquet/
-cs/data/**/windaq_files/
+software/data/**/sharpshooter_raw/
+software/data/**/sharpshooter_labeled/
+software/data/**/sharpshooter_unlabeled/
+software/data/**/sharpshooter_parquet/
+software/data/**/windaq_files/
 
-cs/GUI/backups
-
-# CS ML Outputs
-cs/ML/**/rf_pickle
-cs/ML/**/tcn_weights
-cs/ML/**/*.pkl
-cs/ML/**/*.png
-
+# Recording backups
+software/cs/gui/backups
 *.wav
+
+
+#============== MACHINE LEARNING IGNORES ============== 
+
+# Bulk data
+machine-learning/data/**/sharpshooter_raw/
+machine-learning/data/**/sharpshooter_labeled/
+machine-learning/data/**/sharpshooter_unlabeled/
+machine-learning/data/**/sharpshooter_parquet/
+machine-learning/data/**/windaq_files/
+
+# Model outputs
+machine-learning/**/rf_pickle
+machine-learning/**/tcn_weights
+machine-learning/**/*.pkl
+
+# Model reports
+machine-learning/**/*.png
+

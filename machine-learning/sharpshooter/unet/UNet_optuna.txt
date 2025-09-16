@@ -1,0 +1,13 @@
+2025-07-24 01:02:06.689274 0 {'epochs': 32, 'lr': 0.0005, 'dropout': 0.1, 'weight_decay': 1e-06, 'num_layers': 8, 'features': 32} 0.6240922796464713
+2025-07-24 01:22:37.046761 1 {'epochs': 8, 'lr': 5e-06, 'dropout': 0.01, 'weight_decay': 1e-05, 'num_layers': 2, 'features': 32} 0.04333731243669446
+2025-07-24 01:28:37.996638 2 {'epochs': 32, 'lr': 0.0005, 'dropout': 1e-06, 'weight_decay': 1e-06, 'num_layers': 6, 'features': 32} 0.6271694203974976
+2025-07-24 01:47:11.817580 3 {'epochs': 8, 'lr': 5e-06, 'dropout': 0.1, 'weight_decay': 0, 'num_layers': 6, 'features': 16} 0.3112380065774219
+2025-07-24 01:53:16.220833 4 {'epochs': 16, 'lr': 5e-05, 'dropout': 0.0001, 'weight_decay': 0.0001, 'num_layers': 2, 'features': 16} 0.04995001108585564
+2025-07-24 02:00:05.168967 5 {'epochs': 8, 'lr': 0.0005, 'dropout': 0.0001, 'weight_decay': 1e-07, 'num_layers': 8, 'features': 8} 0.07444980534804027
+2025-07-24 02:06:08.826538 6 {'epochs': 8, 'lr': 0.005, 'dropout': 0.001, 'weight_decay': 1e-06, 'num_layers': 4, 'features': 16} 0.06028642164354126
+2025-07-24 02:11:45.268910 7 {'epochs': 16, 'lr': 0.005, 'dropout': 0.001, 'weight_decay': 1e-07, 'num_layers': 8, 'features': 32} 0.4931978439080303
+2025-07-24 02:23:37.872333 8 {'epochs': 8, 'lr': 0.005, 'dropout': 0.1, 'weight_decay': 0, 'num_layers': 2, 'features': 8} 0.17801167903171397
+2025-07-24 02:28:19.851503 9 {'epochs': 32, 'lr': 0.005, 'dropout': 0.0001, 'weight_decay': 1e-07, 'num_layers': 8, 'features': 64} 0.5350332402949146
+2025-07-24 05:34:18.763730 10 {'epochs': 64, 'lr': 0.0005, 'dropout': 1e-06, 'weight_decay': 1e-06, 'num_layers': 6, 'features': 64} 0.7113055382479934
+2025-07-24 12:04:41.252362 11 {'epochs': 64, 'lr': 0.0005, 'dropout': 1e-06, 'weight_decay': 1e-06, 'num_layers': 6, 'features': 64} 0.6303779376371325
+
