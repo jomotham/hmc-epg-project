@@ -1,0 +1,1 @@
+Firmware team put your files here. You will need to configure your development environment within this folder, rather than the repository root (i.e., open this folder as your workspace folder in VSCode/your editor of choice).
