@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="url">
-    <img src="cs/GUI/SCIDO.png" width="240">
+    <img src="cs/gui/SCIDO.png" width="240">
   </a>
 </p>
 
@@ -16,7 +16,7 @@ A PyQt-based GUI for electropenetrography (EPG). Supports live data acquisition 
 Currently, contact the HMC team to get an runnable .exe of the program (or run from source, see below). In the future, each version's .exe will be bundled with their source code into the "Releases" section of the repository on GitHub.
 
 ## Developers
-We recommend using [**uv**](https://docs.astral.sh/uv/) to manage this project’s environment and dependencies.  
+We recommend using [**uv**](https://docs.astral.sh/uv/) to manage this folder's environment and dependencies.  
 If you prefer, you can use `pip` with a `venv`, but uv is simpler and fully reproducible.
 
 ### Setup with uv
@@ -51,6 +51,7 @@ You must install the correct wheel for your system from the [PyTorch installatio
 
 ### Running from source
 ```
+cd hmc-epg-project/software
 uv run ./cs/gui/main.py              # launch directly into the main window
 uv run ./cs/gui/AppLauncherDialog.py # launch to the dedicated launcher
 ```

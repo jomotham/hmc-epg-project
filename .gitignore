@@ -1,4 +1,4 @@
-#============== SOFTWARE IGNORES ============== 
+============== SOFTWARE IGNORES ============== 
 
 # Python-generated files
 __pycache__/
@@ -55,3 +55,13 @@ machine-learning/**/*.pkl
 # Model reports
 machine-learning/**/*.png
 
+
+
+#============== FIRMWARE IGNORES ============== 
+
+# Editors
+firmware/*.swp
+firmware/*~
+
+# Build
+firmware/build*/

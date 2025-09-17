@@ -1,8 +1,12 @@
-To ML team: complete this readme
+To ML team: update this as you see fit!
+
+This subrepository contains the ML development code for the waveform classifier included in [SCIDO](https://www.github.com/jomotham/tree/main/software). The most recent/best version of these models are packaged with SCIDO.
+
+[Link to project Drive](https://drive.google.com/drive/folders/1IeiOQtImzPjvFvvDDb7daoPg8Atfd-Y5?usp=sharing)
 
 
 # Installation
-We recommend using [**uv**](https://docs.astral.sh/uv/) to manage this project’s environment and dependencies.  
+We recommend using [**uv**](https://docs.astral.sh/uv/) to manage this folder's environment and dependencies.  
 If you prefer, you can use `pip` with a `venv`, but uv is simpler and fully reproducible.
 
 ### Setup with uv
