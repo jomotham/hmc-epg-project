@@ -11,13 +11,15 @@ dependencies = [
     "pandas>=2.3.2",
     "positional-encodings>=6.0.4",
     "pyarrow>=21.0.0",
+    "pyopengl>=3.1.10",
+    "pyopengl-accelerate>=3.1.10",
     "pyqt6>=6.9.1",
     "pyqtgraph>=0.13.7",
     "scikit-learn>=1.7.1",
+    "scipy>=1.16.2",
     "sounddevice>=0.5.2",
     "soundfile>=0.13.1",
     "tqdm>=4.67.1",
-
     "winrt-windows-devices-radios>=3.2.1 ; sys_platform == 'win32'",
 ]
 

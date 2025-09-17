@@ -25,8 +25,8 @@ class AboutDialog(QDialog):
         info = QLabel(
             "<h2>SCIDO</h2>"
             "<h4>Supervised Classification of Insect Data & Observations</h4>"
-            "<p><b>Version:</b> 0.1.4<br>"
-            "<b>Last Update Release:</b> Aug 29, 2025<br>"
+            "<p><b>Version:</b> 0.1.5<br>"
+            "<b>Last Update Release:</b> September 11, 2025<br>"
         )
         info.setAlignment(Qt.AlignmentFlag.AlignCenter)
         info.setWordWrap(True)

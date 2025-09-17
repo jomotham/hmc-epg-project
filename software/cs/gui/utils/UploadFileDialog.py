@@ -50,13 +50,11 @@ class UploadFileDialog(QDialog):
         """
         Opens a QFileDialog to let the user select a CSV file.
         """
-        # You can set a default directory if desired, e.g., os.path.expanduser("~")
-        # filter: "CSV Files (*.csv);;All Files (*)"
-        # caption: "Select EPG Recording File"
         file_dialog = QFileDialog(self)
         file_dialog.setWindowTitle("Select EPG Recording File")
         file_dialog.setFileMode(QFileDialog.FileMode.ExistingFile) # user must select an existing file
-        file_dialog.setNameFilter("EPG Files (*.csv *.wdq *.daq);;All Files (*)")
+        file_dialog.setNameFilter("EPG Files (*.csv *.wdq *.wdh *.daq);;All Files (*)")
+        file_dialog.setViewMode(QFileDialog.ViewMode.Detail)
         file_dialog.setViewMode(QFileDialog.ViewMode.Detail)
 
         file_dialog.setDirectory(settings.get("default_recording_directory"))
@@ -74,7 +72,7 @@ class UploadFileDialog(QDialog):
         Validates the selected file path and emits the signal if valid.
         """
         if self.selected_file_path and os.path.exists(self.selected_file_path):
-            if self.selected_file_ext in [".wdq", ".daq"]:
+            if self.selected_file_ext in [".wdq", ".wdh", ".daq"]:
                 windaq_dialog = WindaqFileDialog(self.selected_file_path, self)
                 if windaq_dialog.exec() == QDialog.DialogCode.Accepted:
                     self.channel_idx = windaq_dialog.get_selected_channel_index()

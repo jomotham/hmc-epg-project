@@ -55,13 +55,11 @@ machine-learning/**/*.pkl
 # Model reports
 machine-learning/**/*.png
 
-
-
 #============== FIRMWARE IGNORES ============== 
 
 # Editors
 firmware/*.swp
 firmware/*~
-
+    
 # Build
 firmware/build*/

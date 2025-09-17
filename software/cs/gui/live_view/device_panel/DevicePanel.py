@@ -12,9 +12,9 @@ import re
 import sys
 import json
 
-from BluetoothManager import BluetoothManager
-from DeviceWidget import DeviceWidget
-from AddDeviceWidget import AddDeviceWidget
+from live_view.device_panel.BluetoothManager import BluetoothManager
+from live_view.device_panel.DeviceWidget import DeviceWidget
+from live_view.device_panel.AddDeviceWidget import AddDeviceWidget
 
 
 class DevicePanel(QWidget):

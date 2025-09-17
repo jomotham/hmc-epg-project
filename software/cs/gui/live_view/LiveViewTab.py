@@ -15,7 +15,9 @@ from live_view.LiveDataWindow import LiveDataWindow
 from live_view.SliderPanel import SliderPanel
 from live_view.socket.ConnectionIndicator import ConnectionIndicator
 from live_view.socket.EPGSocket import SocketClient, SocketServer
+from live_view.device_panel.DevicePanel import DevicePanel
 from utils.ResourcePath import resource_path
+from utils.SVGIcon import svg_to_colored_pixmap
 
 
 class LiveViewTab(QWidget):
@@ -45,9 +47,6 @@ class LiveViewTab(QWidget):
 
         self.receive_loop = threading.Thread(target=self._socket_recv_loop, daemon=True)
         self.receive_loop.start()
-
-
-        self.connect_button = QPushButton("Connect to EPG Device", self)
 
         
 
@@ -108,18 +107,49 @@ class LiveViewTab(QWidget):
         self.pause_live_button.setEnabled(False)
 
 
+        self.device_panel = DevicePanel(parent=self)
+        self.device_button = QToolButton(parent=self)
+        self.device_button.setText("EPG Devices")
+        icon_path = resource_path("icons/bolt.svg")
+        colored_icon = QIcon(svg_to_colored_pixmap(icon_path, "#DDDDDD", 24))
+        self.device_button.setIcon(colored_icon)
+        self.device_button.setIconSize(QSize(24, 24))
+        self.device_button.setToolTip("Open EPG devices")
+        self.device_button.setAutoRaise(True)
+        self.device_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.device_button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
+        self.device_button.clicked.connect(self.toggleDevicePanel)
+        self.device_button.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.device_button.setStyleSheet("""
+            QToolButton {                    
+                outline: none;
+            } QToolButton:disabled {
+                color: gray;               
+                qproperty-icon: none;
+            }
+            QToolButton:focus {
+                outline 3px solid #4aa8ff;
+            }
+        """)
+    
+
+
         self.slider_panel = SliderPanel(parent=self)
         #self.slider_panel.off_button.clicked.connect(self.end_recording)
+        self.slider_panel.setEnabled(False) # TODO: update to auto close if no device connected
+
         self.slider_button = QToolButton(parent=self)
         self.slider_button.setText("EPG Controls")
         icon_path = resource_path("icons/sliders.svg")
-        self.slider_button.setIcon(QIcon(icon_path))
+        colored_icon = QIcon(svg_to_colored_pixmap(icon_path, "#DDDDDD", 24))
+        self.slider_button.setIcon(colored_icon)
         self.slider_button.setIconSize(QSize(24, 24))
         self.slider_button.setToolTip("Open control sliders")
         self.slider_button.setAutoRaise(True)
         self.slider_button.setCursor(Qt.CursorShape.PointingHandCursor)
         self.slider_button.setToolButtonStyle(Qt.ToolButtonStyle.ToolButtonTextBesideIcon)
-        self.slider_button.clicked.connect(self.toggleSliders)
+        self.slider_button.clicked.connect(self.toggleSliderPanel)
+        self.slider_button.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.slider_button.setStyleSheet("""
             QToolButton {
                 outline: none;
@@ -131,13 +161,11 @@ class LiveViewTab(QWidget):
                 outline 3px solid #4aa8ff;
             }
         """)
-        self.slider_button.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+
         self.update_button_state(True)
-        
 
         top_controls = QHBoxLayout()
-        top_controls.addWidget(self.pause_live_button)
-        top_controls.addWidget(self.add_comment_button)
+        top_controls.addWidget(self.device_button)
         top_controls.addStretch()  # push slider button to right
         top_controls.addWidget(self.connection_indicator)
         top_controls.addWidget(self.slider_button)
@@ -150,13 +178,29 @@ class LiveViewTab(QWidget):
             }
         """)
 
-        left_layout = QVBoxLayout()
-        left_layout.addWidget(top_controls_widget)
-        left_layout.addWidget(self.datawindow)
+        bottom_controls = QHBoxLayout()
+        bottom_controls.addStretch()
+        bottom_controls.addWidget(self.pause_live_button)
+        bottom_controls.addWidget(self.add_comment_button)
+        bottom_controls.addStretch()
+
+        bottom_controls_widget = QWidget()
+        bottom_controls_widget.setLayout(bottom_controls)
+        bottom_controls_widget.setStyleSheet("""
+            QWidget {
+                border-top: 1px solid #808080;
+            }
+        """)
+
+        center_layout = QVBoxLayout()
+        center_layout.addWidget(top_controls_widget)
+        center_layout.addWidget(self.datawindow)
+        center_layout.addWidget(bottom_controls_widget)
 
         main_layout = QHBoxLayout()
-        main_layout.addLayout(left_layout, 4)
-        main_layout.addWidget(self.slider_panel, 1)
+        main_layout.addWidget(self.device_panel, 2)
+        main_layout.addLayout(center_layout, 15)
+        main_layout.addWidget(self.slider_panel, 4)
 
         # can't figure out the 2 random tabs --> this logic below doesnt work either
         # self.setTabOrder(self.pause_live_button, self.add_comment_button)
@@ -165,7 +209,18 @@ class LiveViewTab(QWidget):
 
         self.setLayout(main_layout)
 
-    def toggleSliders(self):
+    def toggleDevicePanel(self):
+        if not self.device_button.isEnabled():
+            return
+        is_visible = self.device_panel.isVisible()
+        self.device_panel.setVisible(not is_visible)
+
+        if is_visible:
+            self.slider_button.setToolTip("Open EPG devices")
+        else:
+            self.slider_button.setToolTip("Hide EPG devices")
+
+    def toggleSliderPanel(self):
         if not self.slider_button.isEnabled():
             return
         is_visible = self.slider_panel.isVisible()

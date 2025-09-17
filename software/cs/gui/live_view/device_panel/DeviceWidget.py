@@ -164,15 +164,17 @@ class MacInputDialog(QDialog):
         self.setWindowTitle("Edit MAC Address")
 
         layout = QVBoxLayout(self)
+        layout.setContentsMargins(15, 0, 15, 10)
 
         # Label above the input
-        self.label = QLabel("Enter new MAC address:")
+        self.label = QLabel(f"Enter new MAC address for \"{self.parent().name}\":")
         layout.addWidget(self.label)
 
         # Text field
         self.mac_input = QLineEdit(current_mac)
         self.mac_input.setPlaceholderText("AA:BB:CC:DD:EE:FF")
         layout.addWidget(self.mac_input)
+        layout.addSpacing(10)
 
         # Buttons
         buttons = QDialogButtonBox(

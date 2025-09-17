@@ -7,7 +7,7 @@ logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'SCIDO.png')
 ico_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'SCIDO.ico'))
 
 subprocess.run([
-    r"D:\USDA-Auburn\CS-Repository\.venv\Scripts\python.exe", # TODO: make this not system-dependent
+    r"D:\USDA-Auburn\hmc-epg-project\software\.venv\Scripts\python.exe", # TODO: make this not system-dependent
     '-m', 'PyInstaller',
     './AppLauncherDialog.py',
     '--name=SCIDO',
@@ -18,6 +18,9 @@ subprocess.run([
     '--icon=./SCIDO.ico',
     '--exclude-module=PyQt5',
     '--exclude-module=PySide6',
+    '--hidden-import=OpenGL',
+    '--hidden-import=OpenGL.GL',
+    '--hidden-import=OpenGL.GLU',
     f'--add-data={icon_path}:icons',
     f'--add-data={font_path}:fonts',
     f'--add-data={logo_path}:.',
