@@ -6,7 +6,9 @@ from PyQt6.QtCore import (
 import sys
 import shutil
 import subprocess
-from winrt.windows.devices import radios
+
+if "win" in sys.platform:
+    from winrt.windows.devices import radios
 
 
 class BluetoothWorker(QObject):
@@ -86,7 +88,7 @@ class BluetoothManager(QObject):
         self.bt_thread.started.connect(self.bt_worker.check_bluetooth)
         self.bt_worker.resultReady.connect(self.stateChanged)  # forward result
         self.bt_worker.resultReady.connect(self.bt_thread.quit)
-        self.bt_worker.resultReady.connect(self.bt_worker.deleteLater)
+        self.bt_thread.finished.connect(self.bt_worker.deleteLater)
         self.bt_thread.finished.connect(self.bt_thread.deleteLater)
         self.bt_thread.finished.connect(self._clear_thread_ref)
 
