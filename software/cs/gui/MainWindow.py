@@ -32,6 +32,7 @@ from settings.SettingsWindow import SettingsWindow
 
 from live_view.LiveViewTab import LiveViewTab
 from label_view.LabelViewTab import LabelViewTab
+from device_view.DeviceViewTab import DeviceViewTab
 from utils.AboutDialog import AboutDialog
 
 
@@ -61,7 +62,8 @@ class MainWindow(QMainWindow):
         else:
             self.live_view_tab = LiveViewTab(parent=self)
         self.label_tab = LabelViewTab(self)
-
+        self.device_view_tab = DeviceViewTab(self)
+            
         self.settings_window = SettingsWindow(self)
         self.about_window = AboutDialog(self)
 
@@ -160,6 +162,7 @@ class MainWindow(QMainWindow):
         # Add tabs
         self.tabs.addTab(self.live_view_tab, "Live View")       
         self.tabs.addTab(self.label_tab, "Label View")
+        self.tabs.addTab(self.device_view_tab, "Device View")
 
 
     # def open_upload_dialog(self):
@@ -182,7 +185,7 @@ class MainWindow(QMainWindow):
 
     def export_comments_from_current_tab(self):
         current_widget = self.tabs.currentWidget()
-        if isinstance(current_widget, LiveViewTab) or isinstance(current_widget, LabelViewTab):
+        if isinstance(current_widget, LiveViewTab) or isinstance(current_widget, LabelViewTab) or isinstance(current_widget, DeviceViewTab):
             current_widget.datawindow.export_comments()
         else:
             msg = QMessageBox(self)
@@ -219,12 +222,14 @@ class MainWindow(QMainWindow):
             current_widget.datawindow.setFocus()
         elif isinstance(current_widget, LabelViewTab):
             current_widget.datawindow.setFocus()
+        elif isinstance(current_widget, DeviceViewTab):
+            current_widget.datawindow.setFocus()
     
     def handle_tab_change(self, index: int):
         widget = self.tabs.widget(index)
 
         # Set focus
-        if isinstance(widget, (LiveViewTab, LabelViewTab)):
+        if isinstance(widget, (LiveViewTab, LabelViewTab, DeviceViewTab)):
             widget.datawindow.setFocus()
 
         # Enable/disable "Open" action
