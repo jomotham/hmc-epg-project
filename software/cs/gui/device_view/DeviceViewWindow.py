@@ -21,7 +21,7 @@ from utils.TextEdit import TextEdit
 from utils.ResourcePath import resource_path
 from settings import settings
 
-class DeviceViewWindow(PlotWidget):
+class LiveDataWindow(PlotWidget):
     """
     NEEDS UPDATE
     Widget for visualizing real-time waveform data streams with live updating.
