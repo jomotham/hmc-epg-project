@@ -7,7 +7,7 @@ import sys
 import shutil
 import subprocess
 
-if "win" in sys.platform:
+if sys.platform.startswith("win"):
     from winrt.windows.devices import radios
 
 

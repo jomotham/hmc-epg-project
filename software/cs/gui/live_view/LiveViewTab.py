@@ -145,7 +145,7 @@ class LiveViewTab(QWidget):
         top_controls = QHBoxLayout()
 
 
-        if "win" in sys.platform:
+        if sys.platform.startswith("win"):
             self.device_panel = DevicePanel(parent=self)
             self.device_button = QToolButton(parent=self)
             self.device_button.setText("EPG Devices")
@@ -207,7 +207,7 @@ class LiveViewTab(QWidget):
         center_layout.addWidget(bottom_controls_widget)
 
         main_layout = QHBoxLayout()
-        if "win" in sys.platform:
+        if sys.platform.startswith("win"):
             main_layout.addWidget(self.device_panel, 2)
         main_layout.addLayout(center_layout, 15)
         main_layout.addWidget(self.slider_panel, 4)
